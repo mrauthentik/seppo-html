@@ -5,4 +5,9 @@
 images/
 images/*
 
+# testing py files
 mypython.py
+
+# node modules
+node_modules/
+node_modules/*
