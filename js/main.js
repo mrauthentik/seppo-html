@@ -44,6 +44,26 @@
 //Helper Methods -->
 //------------------------------------------------------------------------
 
+// File input Picture upload preview
+
+const imgPreview = document.getElementById('img-preview')
+const fileInput = document.getElementById('upload')
+
+fileInput.addEventListener("change", function () {
+    getImgData();
+  });
+
+  function getImgData() {
+    const files = fileInput.files[0];
+    if (files) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(files);
+      fileReader.addEventListener("load", function () {
+        imgPreview.style.display = "block";
+        imgPreview.innerHTML += '<img src="' + this.result + '" />';
+      });    
+    }
+  }
 
     function multiClickFunctionStop() {
         $('#toggle').off("click");
@@ -372,7 +392,8 @@
                     'name': $('#name').val(),
                     'email': $('#contact-email').val(),
                     'subject': $('#subject').val(),
-                    'message': $('#message').val()
+                    'message': $('#message').val(),
+                    'upload': $('#upload').val()
                 };
                 $.ajax({
                     type: "POST",
